@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title id="page-title">Ficha Tormenta</title>
+
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+
+		<script src="js/title.js"></script>
+		<script src="js/habilidades.js"></script>
+		<script src="js/pv-pa.js"></script>
+		<script src="js/ca.js"></script>
+	</head>
+
+	<body>
+		<div id="info" style="margin-bottom: 1.5rem;">
+			<div class="info-block">
+				<div class="info-input-block">
+					<input type="text" id="nome" onchange="updateTitle()">
+					<label for="nome">Nome do Personagem</label>
+				</div>
+
+				<div class="info-input-block">
+					<input type="text" id="player">
+					<label for="player">Nome do Jogador</label>
+				</div>
+			</div>
+
+			<div class="info-block">
+				<div class="info-input-block">
+					<input type="text" id="raca">
+					<label for="raca">Raça</label>
+				</div>
+
+				<div class="info-input-block">
+					<input type="text" id="classe">
+					<label for="classe">Classe e Nível</label>
+				</div>
+
+				<div class="info-input-block" style="max-width: 8rem;">
+					<input type="text" id="tendencia">
+					<label for="tendencia">Tendência</label>
+				</div>
+			</div>
+
+			<div class="info-block">
+				<div class="info-input-block">
+					<input type="text" id="sexo" style="max-width: 10rem;">
+					<label for="sexo">Sexo</label>
+				</div>
+
+				<div class="info-input-block" style="max-width: 5rem;">
+					<input type="number" id="idade" step="1">
+					<label for="idade">Idade</label>
+				</div>
+
+				<div class="info-input-block">
+					<input type="text" id="divindade">
+					<label for="divindade">Divindade</label>
+				</div>
+
+				<div class="info-input-block">
+					<input type="text" id="tamanho">
+					<label for="tamanho">Tamanho</label>
+				</div>
+
+				<div class="info-input-block" style="max-width: 8rem;">
+					<input type="number" id="deslocamento" step="0.5">
+					<label for="deslocamento">Deslocamento</label>
+				</div>
+			</div>
+
+		</div>
+
+		<div>
+			<div id="habilidades" style="margin-right: 1.5rem;">
+				<table>
+					<tr>
+						<th scope="col">Habilidade</th>
+						<th scope="col">Valor</th>
+						<th scope="col">Modificador</th>
+					</tr>
+					<tr>
+						<td>FOR</td>
+						<td><input type="number" id="hab-for" value="10" onchange="updateHabilidades('for')"></td>
+						<td><input type="text" id="mod-for" value="0" readonly></td>
+					</tr>
+					<tr>
+						<td>DES</td>
+						<td><input type="number" id="hab-des" value="10" onchange="updateHabilidades('des'); updateCa()"></td>
+						<td><input type="text" id="mod-des" value="0" readonly></td>
+					</tr>
+					<tr>
+						<td>CON</td>
+						<td><input type="number" id="hab-con" value="10" onchange="updateHabilidades('con')"></td>
+						<td><input type="text" id="mod-con" value="0" readonly></td>
+					</tr>
+					<tr>
+						<td>INT</td>
+						<td><input type="number" id="hab-int" value="10" onchange="updateHabilidades('int')"></td>
+						<td><input type="text" id="mod-int" value="0" readonly></td>
+					</tr>
+					<tr>
+						<td>SAB</td>
+						<td><input type="number" id="hab-sab" value="10" onchange="updateHabilidades('sab')"></td>
+						<td><input type="text" id="mod-sab" value="0" readonly></td>
+					</tr>
+					<tr>
+						<td>CAR</td>
+						<td><input type="number" id="hab-car" value="10" onchange="updateHabilidades('car')"></td>
+						<td><input type="text" id="mod-car" value="0" readonly></td>
+					</tr>
+				</table>
+			</div>
+
+			<div style="display: flex; flex-direction: column;">
+				<div id="pv-grid" style="margin-bottom: 1.5rem;">
+					<div></div>
+					<div class="pv-header">Total</div>
+					<div class="pv-header">Atuais</div>
+					<div class="pv-header">Pontos de Ação</div>
+
+					<div class="pv-text">PV</div>
+					<input type="number" id="pv-max"   value="1" onchange="updateMaxPv()">
+					<input type="number" id="pv-atual" value="1" onchange="updatePv()">
+					<input type="number" id="pa"       value="1">
+				</div>
+
+				<div id="ca-grid">
+					<div></div>
+					<div class="ca-header">Total                </div> <div></div><div></div><div></div>
+					<div class="ca-header">1/2 do<br>Nível      </div> <div></div>
+					<div class="ca-header">Mod. de<br>Habilidade</div> <div></div>
+					<div class="ca-header">Bônus de<br>Armadura </div> <div></div>
+					<div class="ca-header">Bônus de<br>Escudo   </div> <div></div>
+					<div class="ca-header">Mod. de<br>Tamanho   </div><div></div>
+					<div class="ca-header">Outros</div>               <div></div>
+					<div class="ca-header">Outros</div>
+
+					<div class="ca-text">CA</div>
+					<input type="number" id="ca-total"       onchange="updateCa()" value="10" readonly> <div>=</div>
+					<input type="number" value="10"          onchange="updateCa()" readonly>           <div>+</div>
+					<input type="number" id="metade-nivel"   onchange="updateCa()" value="0" step="1"> <div>+</div>
+					<input type="number" id="ca-mod-des"     onchange="updateCa()" value="0" readonly> <div>+</div>
+					<input type="number" id="bonus-armadura" onchange="updateCa()" value="0" step="1"> <div>+</div>
+					<input type="number" id="bonus-escudo"   onchange="updateCa()" value="0" step="1"> <div>+</div>
+					<input type="number" id="ca-mod-tamanho" onchange="updateCa()" value="0" step="1"> <div>+</div>
+					<input type="number" id="ca-outros1"     onchange="updateCa()" value="0" step="1"> <div>+</div>
+					<input type="number" id="ca-outros2"     onchange="updateCa()" value="0" step="1">
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
