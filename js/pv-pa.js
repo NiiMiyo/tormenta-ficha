@@ -19,3 +19,9 @@ function updateMaxPv() {
 
   updatePv()
 }
+
+function updatePa() {
+  const pa = document.getElementById("pa")
+  if (parseInt(pa.value) < 0)
+    pa.value = 0
+}

@@ -68,7 +68,7 @@
 				</div>
 
 				<div class="info-input-block" style="max-width: 8rem;">
-					<input type="number" id="deslocamento" step="0.5">
+					<input type="number" id="deslocamento" step="1.5">
 					<label for="deslocamento">Deslocamento</label>
 				</div>
 			</div>
@@ -126,7 +126,7 @@
 					<div class="pv-text">PV</div>
 					<input type="number" id="pv-max"   value="1" onchange="updateMaxPv()">
 					<input type="number" id="pv-atual" value="1" onchange="updatePv()">
-					<input type="number" id="pa"       value="1">
+					<input type="number" id="pa"       value="1" onchange="updatePa()">
 				</div>
 
 				<div id="ca-grid">
@@ -136,19 +136,19 @@
 					<div class="ca-header">Mod. de<br>Habilidade</div> <div></div>
 					<div class="ca-header">Bônus de<br>Armadura </div> <div></div>
 					<div class="ca-header">Bônus de<br>Escudo   </div> <div></div>
-					<div class="ca-header">Mod. de<br>Tamanho   </div><div></div>
-					<div class="ca-header">Outros</div>               <div></div>
+					<div class="ca-header">Mod. de<br>Tamanho   </div> <div></div>
+					<div class="ca-header">Outros</div>                <div></div>
 					<div class="ca-header">Outros</div>
 
 					<div class="ca-text">CA</div>
 					<input type="number" id="ca-total"       onchange="updateCa()" value="10" readonly> <div>=</div>
-					<input type="number" value="10"          onchange="updateCa()" readonly>           <div>+</div>
-					<input type="number" id="metade-nivel"   onchange="updateCa()" value="0" step="1"> <div>+</div>
-					<input type="number" id="ca-mod-des"     onchange="updateCa()" value="0" readonly> <div>+</div>
-					<input type="number" id="bonus-armadura" onchange="updateCa()" value="0" step="1"> <div>+</div>
-					<input type="number" id="bonus-escudo"   onchange="updateCa()" value="0" step="1"> <div>+</div>
-					<input type="number" id="ca-mod-tamanho" onchange="updateCa()" value="0" step="1"> <div>+</div>
-					<input type="number" id="ca-outros1"     onchange="updateCa()" value="0" step="1"> <div>+</div>
+					<input type="number" value="10"          onchange="updateCa()" readonly>            <div>+</div>
+					<input type="number" id="metade-nivel"   onchange="updateCa()" value="0" step="1">  <div>+</div>
+					<input type="number" id="ca-mod-des"     onchange="updateCa()" value="0" readonly>  <div>+</div>
+					<input type="number" id="bonus-armadura" onchange="updateCa()" value="0" step="1">  <div>+</div>
+					<input type="number" id="bonus-escudo"   onchange="updateCa()" value="0" step="1">  <div>+</div>
+					<input type="number" id="ca-mod-tamanho" onchange="updateCa()" value="0" step="1">  <div>+</div>
+					<input type="number" id="ca-outros1"     onchange="updateCa()" value="0" step="1">  <div>+</div>
 					<input type="number" id="ca-outros2"     onchange="updateCa()" value="0" step="1">
 				</div>
 			</div>
