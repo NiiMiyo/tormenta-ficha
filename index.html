@@ -9,18 +9,21 @@
 
     <link rel="stylesheet" type="text/css" href="styles.css" />
 
-    <script src="js/title.js"></script>
+
+    <script src="js/utils.js"></script>
+
     <script src="js/habilidades.js"></script>
     <script src="js/pv-pa.js"></script>
     <script src="js/ca.js"></script>
     <script src="js/resistencias.js"></script>
+    <script src="js/info.js"></script>
   </head>
 
   <body>
     <div id="info" style="margin-bottom: 1.5rem;">
       <div class="info-block">
         <div class="info-input-block">
-          <input type="text" id="nome" onchange="updateTitle()">
+          <input type="text" id="nome" onchange="updateInfo()">
           <label for="nome">Nome do Personagem</label>
         </div>
 
@@ -38,7 +41,12 @@
 
         <div class="info-input-block">
           <input type="text" id="classe">
-          <label for="classe">Classe e Nível</label>
+          <label for="classe">Classe</label>
+        </div>
+
+        <div class="info-input-block" style="max-width: 5rem;">
+          <input type="number" id="nivel" step="1" value="1" onchange="updateInfo()">
+          <label for="classe">Nível</label>
         </div>
 
         <div class="info-input-block" style="max-width: 8rem;">
@@ -53,8 +61,8 @@
           <label for="sexo">Sexo</label>
         </div>
 
-        <div class="info-input-block" style="max-width: 5rem;">
-          <input type="number" id="idade" step="1">
+        <div class="info-input-block" style="max-width: 6rem;">
+          <input type="number" id="idade" step="1" value="16">
           <label for="idade">Idade</label>
         </div>
 
@@ -69,7 +77,7 @@
         </div>
 
         <div class="info-input-block" style="max-width: 8rem;">
-          <input type="number" id="deslocamento" step="1.5">
+          <input type="number" id="deslocamento" step="1.5" value="1.5" onchange="updateInfo()">
           <label for="deslocamento">Deslocamento</label>
         </div>
       </div>
@@ -142,15 +150,15 @@
           <div class="ca-header">Outros</div>
 
           <div class="ca-text">CA</div>
-          <input type="number" id="ca-total"       onchange="updateCa()" value="10" readonly> <div>=</div>
-          <input type="number" value="10"          onchange="updateCa()" readonly>            <div>+</div>
-          <input type="number" id="metade-nivel"   onchange="updateCa()" value="0" step="1">  <div>+</div>
-          <input type="number" id="ca-mod-des"     onchange="updateCa()" value="0" readonly>  <div>+</div>
-          <input type="number" id="bonus-armadura" onchange="updateCa()" value="0" step="1">  <div>+</div>
-          <input type="number" id="bonus-escudo"   onchange="updateCa()" value="0" step="1">  <div>+</div>
-          <input type="number" id="ca-mod-tamanho" onchange="updateCa()" value="0" step="1">  <div>+</div>
-          <input type="number" id="ca-outros1"     onchange="updateCa()" value="0" step="1">  <div>+</div>
-          <input type="number" id="ca-outros2"     onchange="updateCa()" value="0" step="1">
+          <input type="number" id="ca-total"        value="10" readonly>                      <div>=</div>
+          <input type="number" value="10"           onchange="updateCa()" readonly>           <div>+</div>
+          <input type="number" id="ca-metade-nivel" value="0" readonly>                       <div>+</div>
+          <input type="number" id="ca-mod-des"      value="0" readonly>                       <div>+</div>
+          <input type="number" id="bonus-armadura"  onchange="updateCa()" value="0" step="1"> <div>+</div>
+          <input type="number" id="bonus-escudo"    onchange="updateCa()" value="0" step="1"> <div>+</div>
+          <input type="number" id="ca-mod-tamanho"  onchange="updateCa()" value="0" step="1"> <div>+</div>
+          <input type="number" id="ca-outros1"      onchange="updateCa()" value="0" step="1"> <div>+</div>
+          <input type="number" id="ca-outros2"      onchange="updateCa()" value="0" step="1">
         </div>
 
         <div id="resistencias">
@@ -161,21 +169,21 @@
           <div class="res-header">Outros</div>
 
           <div class="res-text">Fortitude</div>
-          <input type="number" id="res-fort-total"        value="0" readonly>                                 <div>=</div>
-          <input type="number" id="res-fort-metade-nivel" value="0" step="1" onchange="updateResistencias()"> <div>+</div>
-          <input type="number" id="res-fort-mod"          value="0" readonly>                                 <div>+</div>
+          <input type="number" id="res-fort-total"        value="0" readonly> <div>=</div>
+          <input type="number" id="res-fort-metade-nivel" value="0" readonly> <div>+</div>
+          <input type="number" id="res-fort-mod"          value="0" readonly> <div>+</div>
           <input type="number" id="res-fort-outros"       value="0" step="1" onchange="updateResistencias()">
 
           <div class="res-text">Reflexo</div>
-          <input type="number" id="res-ref-total"        value="0" readonly>                                 <div>=</div>
-          <input type="number" id="res-ref-metade-nivel" value="0" step="1" onchange="updateResistencias()"> <div>+</div>
-          <input type="number" id="res-ref-mod"          value="0" readonly>                                 <div>+</div>
+          <input type="number" id="res-ref-total"        value="0" readonly> <div>=</div>
+          <input type="number" id="res-ref-metade-nivel" value="0" readonly> <div>+</div>
+          <input type="number" id="res-ref-mod"          value="0" readonly> <div>+</div>
           <input type="number" id="res-ref-outros"       value="0" step="1" onchange="updateResistencias()">
 
           <div class="res-text">Vontade</div>
-          <input type="number" id="res-von-total"        value="0" readonly>                                 <div>=</div>
-          <input type="number" id="res-von-metade-nivel" value="0" step="1" onchange="updateResistencias()"> <div>+</div>
-          <input type="number" id="res-von-mod"          value="0" readonly>                                 <div>+</div>
+          <input type="number" id="res-von-total"        value="0" readonly> <div>=</div>
+          <input type="number" id="res-von-metade-nivel" value="0" readonly> <div>+</div>
+          <input type="number" id="res-von-mod"          value="0" readonly> <div>+</div>
           <input type="number" id="res-von-outros"       value="0" step="1" onchange="updateResistencias()">
         </div>
       </div>
