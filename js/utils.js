@@ -1,18 +1,32 @@
-function getAll() {
+function getInfo() {
   return {
-    info: {
-      nome: document.getElementById("nome").value,
-      player: document.getElementById("player").value,
-      raca: document.getElementById("raca").value,
-      classe: document.getElementById("classe").value,
-      nivel: parseInt(document.getElementById("nivel").value),
-      tendencia: document.getElementById("tendencia").value,
-      sexo: document.getElementById("sexo").value,
-      idade: parseInt(document.getElementById("idade").value),
-      divindade: document.getElementById("divindade").value,
-      tamanho: document.getElementById("tamanho").value,
-      deslocamento: parseInt(document.getElementById("deslocamento").value),
-    },
+    nome: document.getElementById("nome").value,
+    player: document.getElementById("player").value,
+    raca: document.getElementById("raca").value,
+    classe: document.getElementById("classe").value,
+    nivel: parseInt(document.getElementById("nivel").value),
+    tendencia: document.getElementById("tendencia").value,
+    sexo: document.getElementById("sexo").value,
+    idade: parseInt(document.getElementById("idade").value),
+    divindade: document.getElementById("divindade").value,
+    tamanho: document.getElementById("tamanho").value,
+    deslocamento: parseInt(document.getElementById("deslocamento").value),
+  }
+}
+
+function getPericia(id) {
+  return {
+    treinada: document.getElementById(`pericia-${id}-treinada`).checked,
+    total: parseInt(document.getElementById(`pericia-${id}-total`).value),
+    graduacao: parseInt(document.getElementById(`pericia-${id}-graduacao`).value),
+    modificador: parseInt(document.getElementById(`pericia-${id}-mod`).value),
+    outros: parseInt(document.getElementById(`pericia-${id}-outros`).value)
+  }
+}
+
+function getAll() {
+  const all = {
+    info: getInfo(),
     habilidades: {
       forca: {
         habilidade: parseInt(document.getElementById("hab-for").value),
@@ -25,7 +39,10 @@ function getAll() {
       constituicao: {
         habilidade: parseInt(document.getElementById("hab-con").value),
         modificador: parseInt(document.getElementById("mod-con").value),
-
+      },
+      inteligencia: {
+        habilidade: parseInt(document.getElementById("hab-int").value),
+        modificador: parseInt(document.getElementById("mod-int").value),
       },
       sabedoria: {
         habilidade: parseInt(document.getElementById("hab-sab").value),
@@ -35,7 +52,6 @@ function getAll() {
       carisma: {
         habilidade: parseInt(document.getElementById("hab-car").value),
         modificador: parseInt(document.getElementById("mod-car").value),
-
       }
     },
     pv_pa: {
@@ -64,6 +80,18 @@ function getAll() {
         total: parseInt(document.getElementById("res-von-total").value),
         outros: parseInt(document.getElementById("ref-von-outros")),
       }
-    }
+    },
+    pericias: {}
   }
+
+  const pericias = {}
+  Array.from(document.getElementById("pericias").children[1].children).forEach(tr => {
+    const id = tr.getAttribute("pericia-id")
+    if (id == null) return
+
+    pericias[id] = getPericia(id)
+  })
+  all.pericias = pericias
+
+  return all
 }

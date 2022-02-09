@@ -21,7 +21,7 @@
 }
 body {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: fit-content;
   margin: 0 auto;
 }
@@ -32,7 +32,7 @@ body div {
   display: flex;
 }
 body > div {
-  flex-direction: row;
+  flex-direction: column;
 }
 body input {
   font-family: 'Charm', cursive;
@@ -193,4 +193,38 @@ body input {
 #resistencias #res-ref-total,
 #resistencias #res-von-total {
   margin-left: 0.25rem;
+}
+#pericias {
+  border-collapse: collapse;
+  border-left: #808080 solid 1px;
+}
+#pericias td,
+#pericias th {
+  width: fit-content;
+  text-align: center;
+}
+#pericias tr:not(:last-child) {
+  border-bottom: solid 1px #808080;
+}
+#pericias tr td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+#pericias tr > td:nth-child(2) {
+  font-size: 0.75rem;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+}
+#pericias .peri-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#pericias .peri-text {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#pericias input {
+  width: 2rem;
+  font-size: 1.2rem;
 }
