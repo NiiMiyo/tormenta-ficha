@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/utils.js"></script>
 
     <script src="js/habilidades.js"></script>
@@ -19,218 +20,229 @@
     <script src="js/info.js"></script>
     <script src="js/pericias.js"></script>
     <script src="js/ataques.js"></script>
+    <script src="js/save-load.js"></script>
   </head>
 
   <body>
-    <div>
-      <div id="info" style="margin-bottom: 1.5rem;">
-        <div class="info-block">
-          <div class="info-input-block">
-            <input type="text" id="nome" onchange="updateInfo()">
-            <label for="nome">Nome do Personagem</label>
-          </div>
-  
-          <div class="info-input-block">
-            <input type="text" id="player">
-            <label for="player">Nome do Jogador</label>
-          </div>
-        </div>
-  
-        <div class="info-block">
-          <div class="info-input-block">
-            <input type="text" id="raca">
-            <label for="raca">Raça</label>
-          </div>
-  
-          <div class="info-input-block">
-            <input type="text" id="classe">
-            <label for="classe">Classe</label>
-          </div>
-  
-          <div class="info-input-block" style="max-width: 5rem;">
-            <input type="number" id="nivel" step="1" value="1" onchange="updateInfo(); updateTodasPericias()">
-            <label for="classe">Nível</label>
-          </div>
-  
-          <div class="info-input-block" style="max-width: 8rem;">
-            <input type="text" id="tendencia">
-            <label for="tendencia">Tendência</label>
-          </div>
-        </div>
-  
-        <div class="info-block">
-          <div class="info-input-block">
-            <input type="text" id="sexo" style="max-width: 10rem;">
-            <label for="sexo">Sexo</label>
-          </div>
-  
-          <div class="info-input-block" style="max-width: 6rem;">
-            <input type="number" id="idade" step="1" value="16">
-            <label for="idade">Idade</label>
-          </div>
-  
-          <div class="info-input-block">
-            <input type="text" id="divindade">
-            <label for="divindade">Divindade</label>
-          </div>
-  
-          <div class="info-input-block">
-            <input type="text" id="tamanho">
-            <label for="tamanho">Tamanho</label>
-          </div>
-  
-          <div class="info-input-block" style="max-width: 8rem;">
-            <input type="number" id="deslocamento" step="1.5" value="1.5" onchange="updateInfo()">
-            <label for="deslocamento">Deslocamento</label>
-          </div>
-        </div>
-  
-      </div>
-
+    <header id="header">
       <div>
-        <div id="habilidades" style="margin-right: 1.5rem;">
-          <table>
-            <tr>
-              <th scope="col">Habilidade</th>
-              <th scope="col">Valor</th>
-              <th scope="col">Modificador</th>
-            </tr>
-            <tr>
-              <td>FOR</td>
-              <td><input type="number" id="hab-for" value="10" onchange="updateHabilidades('for'); updateTodasPericias(); updateAtaques()"></td>
-              <td><input type="text" id="mod-for" value="0" readonly></td>
-            </tr>
-            <tr>
-              <td>DES</td>
-              <td><input type="number" id="hab-des" value="10" onchange="updateHabilidades('des'); updateCa(); updateResistencias(); updateTodasPericias(); updateAtaques()"></td>
-              <td><input type="text" id="mod-des" value="0" readonly></td>
-            </tr>
-            <tr>
-              <td>CON</td>
-              <td><input type="number" id="hab-con" value="10" onchange="updateHabilidades('con'); updateResistencias(); updateTodasPericias()"></td>
-              <td><input type="text" id="mod-con" value="0" readonly></td>
-            </tr>
-            <tr>
-              <td>INT</td>
-              <td><input type="number" id="hab-int" value="10" onchange="updateHabilidades('int'); updateTodasPericias()"></td>
-              <td><input type="text" id="mod-int" value="0" readonly></td>
-            </tr>
-            <tr>
-              <td>SAB</td>
-              <td><input type="number" id="hab-sab" value="10" onchange="updateHabilidades('sab'); updateResistencias(); updateTodasPericias()"></td>
-              <td><input type="text" id="mod-sab" value="0" readonly></td>
-            </tr>
-            <tr>
-              <td>CAR</td>
-              <td><input type="number" id="hab-car" value="10" onchange="updateHabilidades('car'); updateTodasPericias()"></td>
-              <td><input type="text" id="mod-car" value="0" readonly></td>
-            </tr>
-          </table>
-        </div>
-  
-        <div style="flex-direction: column;">
-          <div id="pv-grid" style="margin-bottom: 1.5rem;">
-            <div></div>
-            <div class="pv-header">Total</div>
-            <div class="pv-header">Atuais</div>
-            <div class="pv-header">Pontos de Ação</div>
-  
-            <div class="pv-text">PV</div>
-            <input type="number" id="pv-max"   value="1" onchange="updateMaxPv()">
-            <input type="number" id="pv-atual" value="1" onchange="updatePv()">
-            <input type="number" id="pa"       value="1" onchange="updatePa()">
-          </div>
-  
-          <div id="ca-grid" style="margin-bottom: 1.5rem;">
-            <div></div>
-            <div class="ca-header">Total </div>                <div></div><div></div><div></div>
-            <div class="ca-header">1/2 do<br>Nível</div>       <div></div>
-            <div class="ca-header">Mod. de<br>Habilidade</div> <div></div>
-            <div class="ca-header">Bônus de<br>Armadura</div>  <div></div>
-            <div class="ca-header">Bônus de<br>Escudo</div>    <div></div>
-            <div class="ca-header">Mod. de<br>Tamanho</div>    <div></div>
-            <div class="ca-header">Outros</div>                <div></div>
-            <div class="ca-header">Outros</div>
-  
-            <div class="ca-text">CA</div>
-            <input type="number" id="ca-total"        value="10" readonly>                      <div>=</div>
-            <input type="number" value="10"           onchange="updateCa()" readonly>           <div>+</div>
-            <input type="number" id="ca-metade-nivel" value="0" readonly>                       <div>+</div>
-            <input type="number" id="ca-mod-des"      value="0" readonly>                       <div>+</div>
-            <input type="number" id="bonus-armadura"  onchange="updateCa()" value="0" step="1"> <div>+</div>
-            <input type="number" id="bonus-escudo"    onchange="updateCa()" value="0" step="1"> <div>+</div>
-            <input type="number" id="ca-mod-tamanho"  onchange="updateCa()" value="0" step="1"> <div>+</div>
-            <input type="number" id="ca-outros1"      onchange="updateCa()" value="0" step="1"> <div>+</div>
-            <input type="number" id="ca-outros2"      onchange="updateCa()" value="0" step="1">
-          </div>
-  
-          <div id="resistencias">
-            <div class="res-header">Resistências</div>
-            <div class="res-header">Total</div>                 <div></div>
-            <div class="res-header">1/2 do<br>Nível</div>       <div></div>
-            <div class="res-header">Mod. de<br>Habilidade</div> <div></div>
-            <div class="res-header">Outros</div>
-  
-            <div class="res-text">Fortitude</div>
-            <input type="number" id="res-fort-total"        value="0" readonly> <div>=</div>
-            <input type="number" id="res-fort-metade-nivel" value="0" readonly> <div>+</div>
-            <input type="number" id="res-fort-mod"          value="0" readonly> <div>+</div>
-            <input type="number" id="res-fort-outros"       value="0" step="1" onchange="updateResistencias()">
-  
-            <div class="res-text">Reflexo</div>
-            <input type="number" id="res-ref-total"        value="0" readonly> <div>=</div>
-            <input type="number" id="res-ref-metade-nivel" value="0" readonly> <div>+</div>
-            <input type="number" id="res-ref-mod"          value="0" readonly> <div>+</div>
-            <input type="number" id="res-ref-outros"       value="0" step="1" onchange="updateResistencias()">
-  
-            <div class="res-text">Vontade</div>
-            <input type="number" id="res-von-total"        value="0" readonly> <div>=</div>
-            <input type="number" id="res-von-metade-nivel" value="0" readonly> <div>+</div>
-            <input type="number" id="res-von-mod"          value="0" readonly> <div>+</div>
-            <input type="number" id="res-von-outros"       value="0" step="1" onchange="updateResistencias()">
-          </div>
-        </div>
+        <button onclick="carregarPersonagem()">Carregar Personagem</button>
+        <input type="file" id="file-upload" accept="application/json">
       </div>
+      <button onclick="salvarPersonagem()">Salvar Personagem</button>
+    </header>
 
-      <table id="ataques">
-        <tr>
-          <th class="ataq-header" scope="col">Ataques</th>
-          <th class="ataq-header" scope="col">Total</th>                   <td></td>
-          <th class="ataq-header" scope="col">Bônus Base<br>de Ataque</th> <td></td>
-          <th class="ataq-header" scope="col">Mod. de<br>Habilidade</th>   <td></td>
-          <th class="ataq-header" scope="col">Mod. de.<br>Tamanho</th>     <td></td>
-          <th class="ataq-header" scope="col">Outros</th>
-        </tr>
-        <tr>
-          <td class="ataq-text">Corpo-a-corpo</td>
-          <td><input type="number" id="ataques-c-total"   value="0" readonly></td> <td>=</td>
-          <td><input type="number" id="ataques-c-bonus"   value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
-          <td><input type="number" id="ataques-c-hab-mod" value="0" readonly></td> <td>+</td>
-          <td><input type="number" id="ataques-c-tam"     value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
-          <td><input type="number" id="ataques-c-outros"  value="0" step="1" onchange="updateAtaques()"></td>
-        </tr>
-        <tr>
-          <td class="ataq-text">À Distância</td>
-          <td><input type="number" id="ataques-d-total"   value="0" readonly></td> <td>=</td>
-          <td><input type="number" id="ataques-d-bonus"   value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
-          <td><input type="number" id="ataques-d-hab-mod" value="0" readonly></td> <td>+</td>
-          <td><input type="number" id="ataques-d-tam"     value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
-          <td><input type="number" id="ataques-d-outros"  value="0" step="1" onchange="updateAtaques()"></td>
-        </tr>
-      </table>
-    </div>
-
-    <div>
-      <table id="pericias">
+    <div id="page">
+      <div style="margin-top: 2rem;">
+        <div id="info" style="margin-bottom: 1.5rem;">
+          <div class="info-block">
+            <div class="info-input-block">
+              <input type="text" id="nome" onchange="updateInfo()">
+              <label for="nome">Nome do Personagem</label>
+            </div>
+    
+            <div class="info-input-block">
+              <input type="text" id="player">
+              <label for="player">Nome do Jogador</label>
+            </div>
+          </div>
+    
+          <div class="info-block">
+            <div class="info-input-block">
+              <input type="text" id="raca">
+              <label for="raca">Raça</label>
+            </div>
+    
+            <div class="info-input-block">
+              <input type="text" id="classe">
+              <label for="classe">Classe</label>
+            </div>
+    
+            <div class="info-input-block" style="max-width: 5rem;">
+              <input type="number" id="nivel" step="1" value="1" onchange="updateInfo(); updateTodasPericias()">
+              <label for="classe">Nível</label>
+            </div>
+    
+            <div class="info-input-block" style="max-width: 8rem;">
+              <input type="text" id="tendencia">
+              <label for="tendencia">Tendência</label>
+            </div>
+          </div>
+    
+          <div class="info-block">
+            <div class="info-input-block">
+              <input type="text" id="sexo" style="max-width: 10rem;">
+              <label for="sexo">Sexo</label>
+            </div>
+    
+            <div class="info-input-block" style="max-width: 6rem;">
+              <input type="number" id="idade" step="1" value="16">
+              <label for="idade">Idade</label>
+            </div>
+    
+            <div class="info-input-block">
+              <input type="text" id="divindade">
+              <label for="divindade">Divindade</label>
+            </div>
+    
+            <div class="info-input-block">
+              <input type="text" id="tamanho">
+              <label for="tamanho">Tamanho</label>
+            </div>
+    
+            <div class="info-input-block" style="max-width: 8rem;">
+              <input type="number" id="deslocamento" step="1.5" value="1.5" onchange="updateInfo()">
+              <label for="deslocamento">Deslocamento</label>
+            </div>
+          </div>
+    
+        </div>
+  
+        <div>
+          <div id="habilidades" style="margin-right: 1.5rem;">
+            <table>
+              <tr>
+                <th scope="col">Habilidade</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Modificador</th>
+              </tr>
+              <tr>
+                <td>FOR</td>
+                <td><input type="number" id="hab-for" value="10" onchange="updateHabilidades('for'); updateTodasPericias(); updateAtaques()"></td>
+                <td><input type="text" id="mod-for" value="0" readonly></td>
+              </tr>
+              <tr>
+                <td>DES</td>
+                <td><input type="number" id="hab-des" value="10" onchange="updateHabilidades('des'); updateCa(); updateResistencias(); updateTodasPericias(); updateAtaques()"></td>
+                <td><input type="text" id="mod-des" value="0" readonly></td>
+              </tr>
+              <tr>
+                <td>CON</td>
+                <td><input type="number" id="hab-con" value="10" onchange="updateHabilidades('con'); updateResistencias(); updateTodasPericias()"></td>
+                <td><input type="text" id="mod-con" value="0" readonly></td>
+              </tr>
+              <tr>
+                <td>INT</td>
+                <td><input type="number" id="hab-int" value="10" onchange="updateHabilidades('int'); updateTodasPericias()"></td>
+                <td><input type="text" id="mod-int" value="0" readonly></td>
+              </tr>
+              <tr>
+                <td>SAB</td>
+                <td><input type="number" id="hab-sab" value="10" onchange="updateHabilidades('sab'); updateResistencias(); updateTodasPericias()"></td>
+                <td><input type="text" id="mod-sab" value="0" readonly></td>
+              </tr>
+              <tr>
+                <td>CAR</td>
+                <td><input type="number" id="hab-car" value="10" onchange="updateHabilidades('car'); updateTodasPericias()"></td>
+                <td><input type="text" id="mod-car" value="0" readonly></td>
+              </tr>
+            </table>
+          </div>
+    
+          <div style="flex-direction: column;">
+            <div id="pv-grid" style="margin-bottom: 1.5rem;">
+              <div></div>
+              <div class="pv-header">Total</div>
+              <div class="pv-header">Atuais</div>
+              <div class="pv-header">Pontos de Ação</div>
+    
+              <div class="pv-text">PV</div>
+              <input type="number" id="pv-max"   value="1" onchange="updateMaxPv()">
+              <input type="number" id="pv-atual" value="1" onchange="updatePv()">
+              <input type="number" id="pa"       value="1" onchange="updatePa()">
+            </div>
+    
+            <div id="ca-grid" style="margin-bottom: 1.5rem;">
+              <div></div>
+              <div class="ca-header">Total </div>                <div></div><div></div><div></div>
+              <div class="ca-header">1/2 do<br>Nível</div>       <div></div>
+              <div class="ca-header">Mod. de<br>Habilidade</div> <div></div>
+              <div class="ca-header">Bônus de<br>Armadura</div>  <div></div>
+              <div class="ca-header">Bônus de<br>Escudo</div>    <div></div>
+              <div class="ca-header">Mod. de<br>Tamanho</div>    <div></div>
+              <div class="ca-header">Outros</div>                <div></div>
+              <div class="ca-header">Outros</div>
+    
+              <div class="ca-text">CA</div>
+              <input type="number" id="ca-total"        value="10" readonly>                      <div>=</div>
+              <input type="number" value="10"           onchange="updateCa()" readonly>           <div>+</div>
+              <input type="number" id="ca-metade-nivel" value="0" readonly>                       <div>+</div>
+              <input type="number" id="ca-mod-des"      value="0" readonly>                       <div>+</div>
+              <input type="number" id="bonus-armadura"  onchange="updateCa()" value="0" step="1"> <div>+</div>
+              <input type="number" id="bonus-escudo"    onchange="updateCa()" value="0" step="1"> <div>+</div>
+              <input type="number" id="ca-mod-tamanho"  onchange="updateCa()" value="0" step="1"> <div>+</div>
+              <input type="number" id="ca-outros1"      onchange="updateCa()" value="0" step="1"> <div>+</div>
+              <input type="number" id="ca-outros2"      onchange="updateCa()" value="0" step="1">
+            </div>
+    
+            <div id="resistencias">
+              <div class="res-header">Resistências</div>
+              <div class="res-header">Total</div>                 <div></div>
+              <div class="res-header">1/2 do<br>Nível</div>       <div></div>
+              <div class="res-header">Mod. de<br>Habilidade</div> <div></div>
+              <div class="res-header">Outros</div>
+    
+              <div class="res-text">Fortitude</div>
+              <input type="number" id="res-fort-total"        value="0" readonly> <div>=</div>
+              <input type="number" id="res-fort-metade-nivel" value="0" readonly> <div>+</div>
+              <input type="number" id="res-fort-mod"          value="0" readonly> <div>+</div>
+              <input type="number" id="res-fort-outros"       value="0" step="1" onchange="updateResistencias()">
+    
+              <div class="res-text">Reflexo</div>
+              <input type="number" id="res-ref-total"        value="0" readonly> <div>=</div>
+              <input type="number" id="res-ref-metade-nivel" value="0" readonly> <div>+</div>
+              <input type="number" id="res-ref-mod"          value="0" readonly> <div>+</div>
+              <input type="number" id="res-ref-outros"       value="0" step="1" onchange="updateResistencias()">
+    
+              <div class="res-text">Vontade</div>
+              <input type="number" id="res-von-total"        value="0" readonly> <div>=</div>
+              <input type="number" id="res-von-metade-nivel" value="0" readonly> <div>+</div>
+              <input type="number" id="res-von-mod"          value="0" readonly> <div>+</div>
+              <input type="number" id="res-von-outros"       value="0" step="1" onchange="updateResistencias()">
+            </div>
+          </div>
+        </div>
+  
+        <table id="ataques">
           <tr>
-            <th scope="col" class="peri-header">Treinada</th>
-            <th scope="col" class="peri-header">Perícias</th>
-            <th scope="col" class="peri-header">Total</th>                 <td></td>
-            <th scope="col" class="peri-header">Grad.</th>             <td></td>
-            <th scope="col" class="peri-header">Mod. de<br>Habilidade</th> <td></td>
-            <th scope="col" class="peri-header">Outros</th>
+            <th class="ataq-header" scope="col">Ataques</th>
+            <th class="ataq-header" scope="col">Total</th>                   <td></td>
+            <th class="ataq-header" scope="col">Bônus Base<br>de Ataque</th> <td></td>
+            <th class="ataq-header" scope="col">Mod. de<br>Habilidade</th>   <td></td>
+            <th class="ataq-header" scope="col">Mod. de.<br>Tamanho</th>     <td></td>
+            <th class="ataq-header" scope="col">Outros</th>
+          </tr>
+          <tr>
+            <td class="ataq-text">Corpo-a-corpo</td>
+            <td><input type="number" id="ataques-c-total"   value="0" readonly></td> <td>=</td>
+            <td><input type="number" id="ataques-c-bonus"   value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+            <td><input type="number" id="ataques-c-hab-mod" value="0" readonly></td> <td>+</td>
+            <td><input type="number" id="ataques-c-tam"     value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+            <td><input type="number" id="ataques-c-outros"  value="0" step="1" onchange="updateAtaques()"></td>
+          </tr>
+          <tr>
+            <td class="ataq-text">À Distância</td>
+            <td><input type="number" id="ataques-d-total"   value="0" readonly></td> <td>=</td>
+            <td><input type="number" id="ataques-d-bonus"   value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+            <td><input type="number" id="ataques-d-hab-mod" value="0" readonly></td> <td>+</td>
+            <td><input type="number" id="ataques-d-tam"     value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+            <td><input type="number" id="ataques-d-outros"  value="0" step="1" onchange="updateAtaques()"></td>
           </tr>
         </table>
+      </div>
+  
+      <div>
+        <table id="pericias">
+            <tr>
+              <th scope="col" class="peri-header">Treinada</th>
+              <th scope="col" class="peri-header">Perícias</th>
+              <th scope="col" class="peri-header">Total</th>                 <td></td>
+              <th scope="col" class="peri-header">Grad.</th>             <td></td>
+              <th scope="col" class="peri-header">Mod. de<br>Habilidade</th> <td></td>
+              <th scope="col" class="peri-header">Outros</th>
+            </tr>
+          </table>
+      </div>
     </div>
 
     <script src="js/insert-pericias.js"></script>
