@@ -70,15 +70,15 @@ function getAll() {
     resistencias: {
       fortitude: {
         total: parseInt(document.getElementById("res-fort-total").value),
-        outros: parseInt(document.getElementById("ref-fort-outros")),
+        outros: parseInt(document.getElementById("res-fort-outros").value),
       },
       reflexo: {
         total: parseInt(document.getElementById("res-ref-total").value),
-        outros: parseInt(document.getElementById("ref-ref-outros")),
+        outros: parseInt(document.getElementById("res-ref-outros").value),
       },
       vontade: {
         total: parseInt(document.getElementById("res-von-total").value),
-        outros: parseInt(document.getElementById("ref-von-outros")),
+        outros: parseInt(document.getElementById("res-von-outros").value),
       }
     },
     pericias: {},
