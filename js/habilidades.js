@@ -6,3 +6,9 @@ function updateHabilidades(hab) {
 
   document.getElementById(`mod-${hab}`).value = mod
 }
+
+function updateTodasHabilidades() {
+  ["for", "des", "con", "int", "sab", "car"].forEach(h => {
+    updateHabilidades(h)
+  })
+}

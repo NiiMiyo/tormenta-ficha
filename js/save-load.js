@@ -76,12 +76,13 @@ function carregarPersonagem() {
     document.getElementById("ataques-d-bonus").value  = person.ataques.aDistancia.bba
     document.getElementById("ataques-d-tam").value    = person.ataques.aDistancia.tamanho
     document.getElementById("ataques-d-outros").value = person.ataques.aDistancia.outros
-  
+
     updateInfo();
-    ["for", "des", "con", "int", "sab"].forEach(h => {
-      updateHabilidades(h)
-    })
+    updateTodasHabilidades()
     updateTodasPericias()
+    updateResistencias()
+    updateCa()
+
     updateMaxPv()
     updatePa()
     updateAtaques()
