@@ -81,7 +81,21 @@ function getAll() {
         outros: parseInt(document.getElementById("ref-von-outros")),
       }
     },
-    pericias: {}
+    pericias: {},
+    ataques: {
+      corpoAcorpo: {
+        total: parseInt(document.getElementById("ataques-c-total").value),
+        bba: parseInt(document.getElementById("ataques-c-bonus").value),
+        tamanho: parseInt(document.getElementById("ataques-c-tam").value),
+        outros: parseInt(document.getElementById("ataques-c-outros").value),
+      }, 
+      aDistancia: {
+        total: parseInt(document.getElementById("ataques-d-total").value),
+        bba: parseInt(document.getElementById("ataques-d-bonus").value),
+        tamanho: parseInt(document.getElementById("ataques-d-tam").value),
+        outros: parseInt(document.getElementById("ataques-d-outros").value),
+      }
+    }
   }
 
   const pericias = {}

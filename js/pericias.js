@@ -15,7 +15,6 @@ function updateTodasPericias() {
 function updatePericia(id) {
   const {nivel} = getInfo()
   const pericia = getPericia(id)
-  console.log(pericia);
 
   const grad = pericia.treinada
     ? nivel + 3

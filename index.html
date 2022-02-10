@@ -18,6 +18,7 @@
     <script src="js/resistencias.js"></script>
     <script src="js/info.js"></script>
     <script src="js/pericias.js"></script>
+    <script src="js/ataques.js"></script>
   </head>
 
   <body>
@@ -96,12 +97,12 @@
             </tr>
             <tr>
               <td>FOR</td>
-              <td><input type="number" id="hab-for" value="10" onchange="updateHabilidades('for'); updateTodasPericias()"></td>
+              <td><input type="number" id="hab-for" value="10" onchange="updateHabilidades('for'); updateTodasPericias(); updateAtaques()"></td>
               <td><input type="text" id="mod-for" value="0" readonly></td>
             </tr>
             <tr>
               <td>DES</td>
-              <td><input type="number" id="hab-des" value="10" onchange="updateHabilidades('des'); updateCa(); updateResistencias(); updateTodasPericias()"></td>
+              <td><input type="number" id="hab-des" value="10" onchange="updateHabilidades('des'); updateCa(); updateResistencias(); updateTodasPericias(); updateAtaques()"></td>
               <td><input type="text" id="mod-des" value="0" readonly></td>
             </tr>
             <tr>
@@ -190,6 +191,33 @@
           </div>
         </div>
       </div>
+
+      <table id="ataques">
+        <tr>
+          <th class="ataq-header" scope="col">Ataques</th>
+          <th class="ataq-header" scope="col">Total</th>                   <td></td>
+          <th class="ataq-header" scope="col">Bônus Base<br>de Ataque</th> <td></td>
+          <th class="ataq-header" scope="col">Mod. de<br>Habilidade</th>   <td></td>
+          <th class="ataq-header" scope="col">Mod. de.<br>Tamanho</th>     <td></td>
+          <th class="ataq-header" scope="col">Outros</th>
+        </tr>
+        <tr>
+          <td class="ataq-text">Corpo-a-corpo</td>
+          <td><input type="number" id="ataques-c-total"   value="0" readonly></td> <td>=</td>
+          <td><input type="number" id="ataques-c-bonus"   value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+          <td><input type="number" id="ataques-c-hab-mod" value="0" readonly></td> <td>+</td>
+          <td><input type="number" id="ataques-c-tam"     value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+          <td><input type="number" id="ataques-c-outros"  value="0" step="1" onchange="updateAtaques()"></td>
+        </tr>
+        <tr>
+          <td class="ataq-text">À Distância</td>
+          <td><input type="number" id="ataques-d-total"   value="0" readonly></td> <td>=</td>
+          <td><input type="number" id="ataques-d-bonus"   value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+          <td><input type="number" id="ataques-d-hab-mod" value="0" readonly></td> <td>+</td>
+          <td><input type="number" id="ataques-d-tam"     value="0" step="1" onchange="updateAtaques()"></td> <td>+</td>
+          <td><input type="number" id="ataques-d-outros"  value="0" step="1" onchange="updateAtaques()"></td>
+        </tr>
+      </table>
     </div>
 
     <div>

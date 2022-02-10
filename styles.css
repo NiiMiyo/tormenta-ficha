@@ -104,6 +104,7 @@ body input {
   height: fit-content;
   width: fit-content;
   grid-template-columns: auto auto auto auto;
+  margin: 0 auto;
 }
 #pv-grid * {
   text-align: center;
@@ -135,6 +136,7 @@ body input {
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
   height: fit-content;
   width: fit-content;
+  margin: 0 auto;
 }
 #ca-grid > div {
   align-items: center;
@@ -164,6 +166,7 @@ body input {
   height: fit-content;
   width: fit-content;
   grid-template-columns: auto auto auto auto auto auto auto auto;
+  margin: 0 auto;
 }
 #resistencias > div {
   align-items: center;
@@ -226,5 +229,26 @@ body input {
 }
 #pericias input {
   width: 3rem;
+  font-size: 1.2rem;
+}
+#ataques {
+  width: fit-content;
+  margin: 0 auto;
+}
+#ataques * {
+  text-align: center;
+  align-items: center;
+}
+#ataques .ataq-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#ataques .ataq-text {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#ataques input {
+  max-width: 3rem;
   font-size: 1.2rem;
 }
