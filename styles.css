@@ -293,4 +293,6 @@ body input {
 }
 #header input {
   font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  font-size: 0.75rem;
 }
